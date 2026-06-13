@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function WelcomePage() {
   const navigate = useNavigate();
 
   const [count, setCount] = useState(0);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const images = [
+    "https://wallpapercave.com/wp/wp7872152.jpg",
+    "https://wallpapercave.com/wp/wp7872161.jpg",
+    "https://wallpapercave.com/wp/wp7872147.jpg",
+    "https://wallpapercave.com/wp/wp7872157.jpg",
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleImageClick = () => {
     const newCount = count + 1;
@@ -17,19 +33,21 @@ function WelcomePage() {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center bg-pink-100">
-      <img
-        src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46"
-        alt="God"
-        className="w-80 rounded-xl shadow-lg cursor-pointer"
-        onClick={handleImageClick}
-      />
+    <div className="min-h-screen bg-pink-100 flex flex-col justify-center items-center px-4">
+      <div className="w-full max-w-md">
+        <img
+          src={images[currentImage]}
+          alt="Radha Krishna"
+          className="w-full  object-cover rounded-3xl shadow-2xl cursor-pointer transition-all duration-700"
+          onClick={handleImageClick}
+        />
+      </div>
 
-      <h1 className="mt-5 text-2xl font-bold text-pink-700">
-        Radha Krishna ❤️
+      <h1 className="mt-6 text-3xl font-bold text-pink-700">
+         Radha Krishna 
       </h1>
 
-      <p className="mt-2 text-gray-600">Tap the image 4 times</p>
+      
     </div>
   );
 }
