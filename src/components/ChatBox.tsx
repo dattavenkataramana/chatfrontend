@@ -46,7 +46,7 @@ function ChatBox({ clearSignal }: Props) {
 
   const loadMessages = async () => {
     try {
-      const response = await api.get("/chat/messages", {
+      const response = await api.get("/api/chat/messages", {
         params: {
           sender_id: currentUserId,
           receiver_id: receiverId,
@@ -69,7 +69,7 @@ function ChatBox({ clearSignal }: Props) {
 
   const clearChat = async () => {
     try {
-      await api.delete("/chat/clear-chat");
+      await api.delete("/api/chat/clear-chat");
 
       // Remove messages from screen immediately
       setMessages([]);
