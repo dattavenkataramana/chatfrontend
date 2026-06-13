@@ -43,9 +43,7 @@ function WelcomePage() {
         />
       </div>
 
-      <h1 className="mt-6 text-3xl font-bold text-pink-700">
-         Radha Krishna 
-      </h1>
+      
 
       
     </div>
